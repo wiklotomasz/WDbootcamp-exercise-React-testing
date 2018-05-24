@@ -29,4 +29,17 @@ describe('PlayersList', () => {
 
 	});
 
+	it('click event calls onPlayerRemove', () => {
+		const players = [{name: 'Jaś', score: 3}, {name: 'Małgosia', score: 5}];
+		const mockedOnPlayerRemove = jest.fn();
+		const playerComponent = shallow(<PlayersList players={players} onPlayerRemove={mockedOnPlayerRemove} />);
+		const firstPlayer = playerComponent.find(Player).first();
+		const onPlayerRemove = firstPlayer.prop('onPlayerRemove');
+		const expectedPlayersNumber = playerComponent.find(Player).length;
+
+		onPlayerRemove();
+		expect(expectedPlayersNumber).toEqual(1);
+
+	});
+
 });
