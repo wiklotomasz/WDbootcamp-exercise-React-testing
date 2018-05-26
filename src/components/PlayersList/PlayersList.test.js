@@ -38,7 +38,7 @@ describe('PlayersList', () => {
 		const expectedPlayersNumber = playerComponent.find(Player).length;
 
 		onPlayerRemove();
-		expect(expectedPlayersNumber).toEqual(1);
+		expect(mockedOnPlayerRemove).toBeCalled();
 
 	});
 

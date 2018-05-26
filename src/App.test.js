@@ -3,6 +3,7 @@ import {shallow} from 'enzyme';
 import App from './App';
 import PlayersList from './components/PlayersList/PlayersList.js';
 import AddPlayer from './components/AddPlayer/AddPlayer.js';
+import Player from "./components/Player/Player";
 
 it('renders without crashing', () => {
   shallow(<App />);
@@ -38,11 +39,9 @@ it('should remove player', () => {
 	const appComponent = shallow(<App />);
 	const players = [{name: 'Piotr', score: 5}, {name: 'Paweł', score: 2}];
 	appComponent.setState({players});
-
+	console.log(appComponent.state().players);
 	const onPlayerRemove = appComponent.find(PlayersList).prop('onPlayerRemove');
-
-	onPlayerRemove();
-
-	expect(players.length).toEqual(1);
+	onPlayerRemove(0);
+	expect(appComponent.state().players.length).toEqual(1);
 
 });
